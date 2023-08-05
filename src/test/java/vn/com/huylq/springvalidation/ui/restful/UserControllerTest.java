@@ -66,6 +66,27 @@ class UserControllerTest {
                 .password("123123a@")
                 .ipAddress("255.255.255.256")
                 .requestId("12345")
+                .age(1)
+                .build();
+
+        // then
+        mockMvc.perform(post("/users")
+                        .header("lang", "vi")
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    void givenInvalidAge_whenCreateUser_expectBadRequest() throws Exception {
+        // given
+        UserRequestDTO request = UserRequestDTO.builder()
+                .username("huylq33")
+                .password("123123a@")
+                .ipAddress("255.255.255.255")
+                .requestId("12345")
+                .age(-1)
                 .build();
 
         // then
@@ -85,6 +106,7 @@ class UserControllerTest {
                 .password("123123a@")
                 .ipAddress("255.255.255.255")
                 .requestId("12345")
+                .age(2)
                 .build();
 
         // then
@@ -123,6 +145,7 @@ class UserControllerTest {
                 .password("123123a@")
                 .ipAddress("255.255.255.255")
                 .requestId("12345")
+                .age(3)
                 .build();
 
         // then
@@ -161,6 +184,7 @@ class UserControllerTest {
                 .password("123123a@")
                 .ipAddress("255.255.255.255")
                 .requestId("12345")
+                .age(2)
                 .build();
 
         // then

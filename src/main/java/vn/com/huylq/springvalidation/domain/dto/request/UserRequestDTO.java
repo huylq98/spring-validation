@@ -1,8 +1,6 @@
 package vn.com.huylq.springvalidation.domain.dto.request;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Null;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,4 +29,7 @@ public class UserRequestDTO {
     private String ipAddress;
 
     private String requestId;
+
+    @Min(value = 1, message = "{field.age} ${validatedValue} must be a positive integer and greater than or equal to {value}")
+    private int age;
 }
